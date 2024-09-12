@@ -1,0 +1,25 @@
+{% load static %} <!-- To load static files -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member List</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Member List</h2>
+        <a href="{% url 'member_create' %}"><button>Add New Member</button></a>
+        <ul>
+            {% for member in members %}
+                <li>
+                    {{ member.first_name }} {{ member.last_name }} - {{ member.email }}
+                    <a href="{% url 'member_update' member.id %}">Edit</a> |
+                    <a href="{% url 'member_delete' member.id %}">Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
